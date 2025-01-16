@@ -17,8 +17,3 @@ resource "docker_container" "nginx_test" {
     name = docker_network.api.name
   }
 }
-
-output "nginx-details" {
-  value = docker_image.nginx
-}
-
