@@ -76,6 +76,10 @@ variable "api_port" {
   description = "api port number"
   type        = number
 }
+variable "api_count" {
+  description = "number of api container"
+  type        = number
+}
 
 ## NETWORK VARIABLES
 ####################
