@@ -1,0 +1,86 @@
+## POSTGRES VARIABLES
+#####################
+variable "pg_image_name" {
+  description = "postgres image name"
+  type        = string
+}
+variable "pg_container_name" {
+  description = "postgres container name"
+  type        = string
+}
+variable "pg_port" {
+  description = "postgres port number"
+  type        = number
+}
+variable "pg_count" {
+  description = "number of postgres db"
+  type        = number
+}
+variable "pg_db_name" {
+  description = "postgres db name"
+  type        = string
+}
+variable "pg_user" {
+  description = "postgres username"
+  type        = string
+}
+variable "pg_password" {
+  description = "postgres db password"
+  type        = string
+  sensitive   = true
+}
+
+## PGADMIN VARIABLES
+####################
+variable "pgadmin_image_name" {
+  description = "pgadmin image name"
+  type        = string
+}
+variable "pgadmin_container_name" {
+  description = "pgadmin container name"
+  type        = string
+}
+variable "pgadmin_port" {
+  description = "pgadmin port number"
+  type        = number
+}
+variable "pgadmin_email" {
+  description = "pgadmin email"
+  type        = string
+}
+variable "pgadmin_password" {
+  description = "pgadmin password"
+  type        = string
+  sensitive   = true
+}
+## API VARIABLES
+################
+variable "api_image_name" {
+  description = "api container name"
+  type        = string
+}
+variable "api_container_name" {
+  description = "api image name"
+  type        = string
+}
+variable "api_db_url" {
+  description = "full db url containing db credentials"
+  type        = string
+  sensitive   = true
+}
+variable "api_server_addr" {
+  description = "full server address"
+  type        = string
+}
+variable "api_port" {
+  description = "api port number"
+  type        = number
+}
+
+## NETWORK VARIABLES
+####################
+variable "network_name" {
+  description = "network name"
+  type        = string
+}
+
