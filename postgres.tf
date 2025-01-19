@@ -6,6 +6,7 @@ resource "docker_image" "postgres" {
 resource "docker_container" "postgres_1" {
   name  = "xpay_postgres"
   image = docker_image.postgres.image_id
+  hostname = "postgres"
 
   env = [
     "POSTGRES_DB=xpay",

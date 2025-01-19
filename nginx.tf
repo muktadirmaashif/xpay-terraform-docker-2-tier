@@ -10,7 +10,7 @@ resource "docker_container" "nginx_test" {
 
   ports {
     internal = 80
-    external = 8080
+    external = 8088
   }
 
   networks_advanced {
