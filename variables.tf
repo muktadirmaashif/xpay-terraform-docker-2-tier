@@ -8,6 +8,10 @@ variable "pg_container_name" {
   description = "postgres container name"
   type        = string
 }
+variable "pg_hostname" {
+  description = "postgres hostname"
+  type        = string
+}
 variable "pg_port" {
   description = "postgres port number"
   type        = number

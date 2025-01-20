@@ -1,4 +1,4 @@
 resource "docker_network" "api" {
-  name       = "xpay_network"
+  name       = var.network_name
   attachable = true
 }
