@@ -6,7 +6,7 @@ resource "docker_image" "postgres" {
 resource "docker_container" "postgres_1" {
   name     = var.pg_container_name
   image    = docker_image.postgres.image_id
-  hostname = "postgres"
+  hostname = var.pg_hostname
 
   env = [
     "POSTGRES_DB=${var.pg_db_name}",
