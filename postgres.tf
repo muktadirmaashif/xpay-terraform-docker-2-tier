@@ -1,21 +1,21 @@
 resource "docker_image" "postgres" {
-  name         = "postgres:17.0-alpine3.20"
+  name         = var.pg_image_name
   keep_locally = true
 }
 
 resource "docker_container" "postgres_1" {
-  name  = "xpay_postgres"
-  image = docker_image.postgres.image_id
+  name     = var.pg_container_name
+  image    = docker_image.postgres.image_id
   hostname = "postgres"
 
   env = [
-    "POSTGRES_DB=xpay",
-    "POSTGRES_USER=ash",
-    "POSTGRES_PASSWORD=samplepass",
+    "POSTGRES_DB=${var.pg_db_name}",
+    "POSTGRES_USER=${var.pg_user}",
+    "POSTGRES_PASSWORD=${var.pg_password}",
   ]
   ports {
-    internal = 5432
-    external = 5432
+    internal = var.pg_port
+    external = var.pg_port
   }
 
   networks_advanced {
@@ -33,12 +33,12 @@ resource "docker_container" "postgres_1" {
 ### pgadmin image and container
 # ----------------------------
 resource "docker_image" "pgadmin" {
-  name         = "dpage/pgadmin4:latest"
+  name         = var.pgadmin_image_name
   keep_locally = true
 }
 
 resource "docker_container" "xpay_pgadmin" {
-  name  = "pgadmin"
+  name  = var.pgadmin_container_name
   image = docker_image.pgadmin.image_id
 
   networks_advanced {
@@ -47,11 +47,11 @@ resource "docker_container" "xpay_pgadmin" {
 
   ports {
     internal = 80
-    external = 8000
+    external = var.pgadmin_port
   }
 
   env = [
-    "PGADMIN_DEFAULT_EMAIL=ash@docker.com",
-    "PGADMIN_DEFAULT_PASSWORD=SuperSecret",
+    "PGADMIN_DEFAULT_EMAIL=${var.pgadmin_email}",
+    "PGADMIN_DEFAULT_PASSWORD=${var.pgadmin_password}",
   ]
 }

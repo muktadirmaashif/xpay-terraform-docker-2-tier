@@ -1,23 +1,23 @@
 resource "docker_container" "xpay" {
-    name = "xpay_api"
-    image = "xpay_api:latest"
+  name  = var.api_container_name
+  image = var.api_image_name
 
-    env = [
-      "DB_URL=postgres://ash:samplepass@postgres:5432/xpay?sslmode=disable&timezone=UTC",
-      "SERVER_ADDRESS=0.0.0.0:8080",
-    ]
+  env = [
+    "DB_URL=${var.api_db_url}",
+    "SERVER_ADDRESS=${var.api_server_addr}",
+  ]
 
-    ports {
-    internal = 8080
-    external = 8080
-    }
+  ports {
+    internal = var.api_port
+    external = var.api_port
+  }
 
-    networks_advanced {
+  networks_advanced {
     name = docker_network.api.name
-    }
-    
-    depends_on = [
-      docker_container.postgres_1
-    ]
-    restart = "unless-stopped"
+  }
+
+  depends_on = [
+    docker_container.postgres_1
+  ]
+  restart = "unless-stopped"
 }
