@@ -1,5 +1,6 @@
 resource "docker_container" "xpay" {
-  name  = var.api_container_name
+  count = var.api_count
+  name  = "${var.api_container_name}_${count.index + 1}"
   image = var.api_image_name
 
   env = [
@@ -9,7 +10,7 @@ resource "docker_container" "xpay" {
 
   ports {
     internal = var.api_port
-    external = var.api_port
+    external = var.api_port + count.index + 1
   }
 
   networks_advanced {
