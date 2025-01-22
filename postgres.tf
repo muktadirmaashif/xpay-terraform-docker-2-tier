@@ -33,10 +33,6 @@ resource "docker_container" "postgres_1" {
     volume_name    = docker_volume.pg_data.name
     container_path = var.pg_vol_main_cpath
   }
-  volumes {
-    volume_name    = docker_volume.pg_backup.name
-    container_path = var.pg_vol_backup_cpath
-  }
 }
 
 ### pgadmin image and container
