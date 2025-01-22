@@ -33,6 +33,24 @@ variable "pg_password" {
   type        = string
   sensitive   = true
 }
+## ----- volumes ----------
+variable "pg_vol_main" {
+  description = "postgres main volume name"
+  type        = string
+}
+variable "pg_vol_main_cpath" {
+  description = "postgres main volume container path"
+  type        = string
+}
+
+variable "pg_vol_backup" {
+  description = "postgres backup volume name"
+  type        = string
+}
+variable "pg_vol_backup_cpath" {
+  description = "postgres backup volume container path"
+  type        = string
+}
 
 ## PGADMIN VARIABLES
 ####################
