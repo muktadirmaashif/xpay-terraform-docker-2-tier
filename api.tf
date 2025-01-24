@@ -4,7 +4,7 @@ resource "docker_container" "xpay" {
   image = var.api_image_name
 
   env = [
-    "DB_URL=${var.api_db_url}",
+    "DB_URL=${var.pg_hostname}://${var.pg_user}:${var.pg_password}@${var.pg_hostname}:${var.pg_port}/${var.pg_db_name}?sslmode=disable&timezone=UTC",
     "SERVER_ADDRESS=${var.api_server_addr}",
   ]
 
