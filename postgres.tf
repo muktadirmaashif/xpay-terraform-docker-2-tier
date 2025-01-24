@@ -13,6 +13,7 @@ resource "docker_container" "postgres_1" {
     "POSTGRES_USER=${var.pg_user}",
     "POSTGRES_PASSWORD=${var.pg_password}",
   ]
+
   ports {
     internal = var.pg_port
     external = var.pg_port
@@ -35,6 +36,38 @@ resource "docker_container" "postgres_1" {
   }
 }
 
+resource "docker_container" "postgres_2" {
+  name     = "${var.pg_container_name}_2"
+  image    = docker_image.postgres.image_id
+  hostname = "${var.pg_hostname}_2"
+
+  env = [
+    "POSTGRES_DB=${var.pg_db_name}",
+    "POSTGRES_USER=${var.pg_user}",
+    "POSTGRES_PASSWORD=${var.pg_password}",
+  ]
+
+  ports {
+    internal = var.pg_port
+    external = var.pg_port + 1
+  }
+
+  networks_advanced {
+    name = docker_network.api.name
+  }
+
+  healthcheck {
+    test     = ["CMD-SHELL", "pg_isready -U ash -d xpay"]
+    interval = "10s"
+    timeout  = "5s"
+    retries  = 3
+  }
+
+  volumes {
+    volume_name    = docker_volume.pg_backup.name
+    container_path = var.pg_vol_main_cpath
+  }
+}
 ### pgadmin image and container
 # ----------------------------
 resource "docker_image" "pgadmin" {

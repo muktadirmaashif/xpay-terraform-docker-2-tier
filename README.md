@@ -7,9 +7,9 @@
 | v1.0 | • Single postgres db image and container provisioning <br>• Single backend api image and container provisioning<br>• Single Network provisioning <br>• pgadmin for db inspection| ✅<br>✅<br>✅ <br>✅ |
 | v1.1 | Introduced and implemented regular and secret variables for all images and containers | ✅ |
 | v1.2 | Introduced volumes for database containers to achieve persistent storage (one for regular and one for backup) | ✅ |
-| v2.0 | • Added another api container <br>• Added another database container (backup, replication)<br>• Binding volumes to backup db container <br>• Isolated network for api and database containers | ✅<br>🔄<br>🔄<br>🔄 |
-| v2.1 | • Introduced redis container for storing cache and application state <br>• Added another volume for redis (persistent wallet state, transaction history) | 🔄<br>🔄 |
-| v2.2 | Introduced nginx for load balancing (application-level) | 🔄 |
+| v2.0 |• Added another api container <br>• Added another database container (secondary, replicated)<br>• Binding volumes to backup db container|  ✅ <br>🔄 |
+| v2.1 | • Introduced docker swarm, declared one db and one api service as master nodes <br> • Reprovisioned the api and db containers as services for convenience  <br>• Implemented db connection failover script | 🔄<br>🔄 <br>🔄<br>🔄<br>🔄 |
+| v2.2 |• Introduced redis container for storing cache and application state <br>• Added another volume for redis (persistent wallet state, transaction history)| 🔄 <br>🔄 |
 | v2.3 | • Introduced Prometheus and Grafana for monitoring <br>• Prometheus metrics and Grafana dashboards|  🔄<br>🔄 |
 | v3.0 | • Converting the provisioning for AWS <br>• AWS RDS with PostgreSQL<br>• ECS Fargate for serverless container deployment | 🔄<br>🔄<br>🔄 |
 
