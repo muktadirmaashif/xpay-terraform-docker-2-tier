@@ -5,3 +5,7 @@ resource "docker_volume" "pg_data" {
 resource "docker_volume" "pg_backup" {
   name = var.pg_vol_backup
 }
+
+resource "docker_volume" "db_state" {
+  name = "db_state"
+}

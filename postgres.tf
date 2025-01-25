@@ -68,6 +68,8 @@ resource "docker_container" "postgres_2" {
     container_path = var.pg_vol_main_cpath
   }
 }
+
+#######################################################################################
 ### pgadmin image and container
 # ----------------------------
 resource "docker_image" "pgadmin" {
