@@ -11,3 +11,6 @@ provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
+resource "docker_swarm_cluster" "xpay" {
+  name = "xpay_swarm"
+}
